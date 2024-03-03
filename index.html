@@ -1,0 +1,86 @@
+<!-- ENGO 551 Lab 4 HTML File, Mitchell Aitken Winter 2024 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ENGO 551 Lab 4</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- leaflet's styling, makes the map look nice -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!-- for those overlapping markers, so we can still see everything -->
+    <script src="https://cdn.jsdelivr.net/gh/fritz-c/OverlappingMarkerSpiderfier@1.1.4/dist/oms.min.js"></script>
+
+    <!-- date range picker's styling, for choosing dates -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+
+
+    <!-- just some basic styles to make things look not terrible -->
+    <style>
+         body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #121212; /* Dark background for the whole page */
+                color: white; /* White text color */
+            }
+            #header {
+                text-align: center;
+                padding: 20px;
+                width: 100%;
+                background-color: #333333; /* Darker shade for the header */
+                box-shadow: 0 2px 4px rgba(255,255,255,0.1); /* Lighter shadow for contrast */
+                color: white; /* White text color */
+            }
+            #mapid {
+                height: 600px;
+                width: 80%;
+                margin-top: 20px;
+            }
+            .info {
+                margin-top: 10px;
+                font-size: 0.9em;
+            }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <h1>Calgary Building Permits and Traffic Collisions Map</h1>
+        <!-- just so people know who made this -->
+        <div class="info">Mitchell Aitken - ENGO 551 2024</div>
+    </div>
+
+    <!-- where the map's gonna live -->
+    <div id="mapid"></div>
+
+    <!-- where you pick the dates -->
+    <div style="margin-top: 20px;">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate">
+        <!-- the button that makes it all happen -->
+        <button onclick="updateMap()">Search</button>
+    </div>
+
+    <!-- bunch of scripts so the map and date picker work -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+    <!-- the script that kicks everything off -->
+    <script src="map-init.js" defer></script>
+
+</body>
+</html>
